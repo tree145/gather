@@ -1,0 +1,57 @@
+[
+  {
+    "id": "demo-transit",
+    "scenario": "everyday",
+    "name": "Transit 24 通勤背包",
+    "brand": "NORTHFORM",
+    "color": "sage",
+    "description": "示範商品，所有規格皆為虛構。\n售價：NT$2,480\n重量：820 g\n容量：24 L\n筆電隔層：16 吋\n加厚背板：有\n腰帶：無\n用途：每日通勤、攜帶筆電與日常用品。",
+    "review": {"text": "示範心得：主袋開口方便拿取通勤用品，但滿載時需要重新調整肩帶。", "context": "虛構通勤情境，僅展示心得呈現方式；不參與排序。"}
+  },
+  {
+    "id": "demo-trek",
+    "scenario": "everyday",
+    "name": "Trek 32 旅行背包",
+    "brand": "NORTHFORM",
+    "color": "clay",
+    "description": "示範商品，所有規格皆為虛構。\n售價：NT$3,280\n重量：1.38 kg\n容量：32 L\n筆電隔層：16 吋\n加厚背板：有\n腰帶：有\n用途：週末旅行、攜帶較多用品，重視背負結構。",
+    "review": {"text": "示範心得：旅行時腰帶有助於調整負重位置，不過空包拿起來比輕量款厚重。", "context": "虛構旅行情境，並非實測結果；舒適度仍需本人試背。"}
+  },
+  {
+    "id": "demo-lite",
+    "scenario": "everyday",
+    "name": "Lite 20 輕量背包",
+    "brand": "NORTHFORM",
+    "color": "sand",
+    "description": "示範商品，所有規格皆為虛構。\n售價：NT$1,680\n重量：540 g\n容量：20 L\n筆電隔層：14 吋\n加厚背板：無\n腰帶：無\n用途：輕裝出門、預算優先，不需攜帶大型筆電。",
+    "review": {"text": "示範心得：短程出門輕巧好收納，但隔層較少，需要另外準備收納袋。", "context": "虛構短程使用情境，僅供介面展示。"}
+  },
+  {
+    "id": "demo-cabin-a",
+    "scenario": "carryon",
+    "name": "A 規格符合包",
+    "brand": "CABIN DEMO",
+    "color": "sage",
+    "description": "虛構情境商品 A。\n售價：NT$2800\n尺寸：30x30x30 cm\n水壺袋：無\n用途：比較標示規格直接符合的選項。其他規格未提供。",
+    "review": null,
+    "compression_evidence": []
+  },
+  {
+    "id": "demo-cabin-b",
+    "scenario": "carryon",
+    "name": "B 彈性隨身包",
+    "brand": "CABIN DEMO",
+    "color": "clay",
+    "description": "虛構情境商品 B。\n售價：NT$1400\n尺寸：30x20x45 cm\n水壺袋：有\n用途：比較較便宜但需接受尺寸取捨的選項。其他規格未提供。",
+    "review": null,
+    "compression_evidence": [
+      {
+        "source_label": "離線示範心得 #B-01（虛構，未搜尋網路）",
+        "quote": "我只裝七分滿、頂部放衣服，長邊從 45 cm 壓到約 40 cm，另外兩邊約 30 與 20 cm。裝滿或頂部放硬物時壓不下去。",
+        "conditions": "只裝七分滿，頂部為柔軟衣物、沒有硬物；須自行量測裝載後尺寸。",
+        "compressed_dimensions_cm": [30, 20, 40],
+        "stance": "supporting"
+      }
+    ]
+  }
+]

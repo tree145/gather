@@ -1,0 +1,51 @@
+# Local settings and credentials
+.env
+.env.*
+.aws/
+.ssh/
+.claude/
+.codex/
+.agents/
+*credentials*
+*secrets*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local user data and generated recordings
+data/
+*.db
+*.db-*
+*.sqlite*
+*.log
+*.webm
+*.mp4
+
+# Python and editor artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Internal planning, proposal and legacy materials
+PROPOSAL*
+ARCHITECTURE_AND_CONSUMER_PLAN*
+CONTRIBUTING.md
+TESTING.md
+FRONTEND.md
+spec.md
+ai_recommendation_product_core*
+code.txt
+*.pptx
+*.ppt
+deploy/
+contract-samples/

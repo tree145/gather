@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#234c40">
+  <title>Gather · 找到適合你的商品</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Gather 首頁"><span class="brand-icon">g.</span> gather<span class="brand-caption">選物，從你開始。</span></a>
+    <div class="header-right"><span class="mode-badge"><i></i>離線規則示範</span><span id="connection" class="connection">連接本機中</span></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">A LITTLE LESS SEARCHING. A BETTER FIT.</p><h1>挑選適合你的，<br><span>也看懂為什麼。</span></h1><p class="hero-copy">放入你正在考慮的商品，告訴我們怎麼使用。<br>從需求、規格到取捨，一起把選擇變簡單。</p></div>
+      <aside class="hero-note"><span class="note-number">01 — 03</span><p>不是找最多功能，<br>是找到<span>剛剛好。</span></p><div class="mini-path">選商品 <b>→</b> 說需求 <b>→</b> 看理由</div></aside>
+    </section>
+
+    <div id="error" role="alert" class="alert" hidden></div>
+    <div class="workspace">
+      <aside class="needs-panel" aria-labelledby="needs-title">
+        <div class="section-label"><span class="step-number">02</span><span>YOUR NEEDS</span></div>
+        <h2 id="needs-title">你的日常，就是挑選標準</h2><p class="muted">先用自己的話描述，再確認下方條件。</p>
+        <div class="presets" aria-label="示範使用情境"><button class="preset active" data-preset="comfort">週末旅行</button><button class="preset" data-preset="lightweight">輕量通勤</button><button class="preset" data-preset="value">預算優先</button><button class="preset" data-preset="carryon">隨身包取捨 A / B</button></div>
+        <label class="field-label" for="needs">這次你需要什麼？</label>
+        <textarea id="needs" rows="5" maxlength="2000" placeholder="例如：預算 3500 元，要帶 16 吋筆電，週末旅行會走很多路，重視背負設計。"></textarea>
+        <button id="parse" class="button secondary full">整理我的需求 <span>↗</span></button>
+        <p id="draft-note" class="micro">此版以規則整理需求，請確認條件後再比較。</p>
+        <div class="divider"></div>
+        <h3 class="small-heading">確認期望條件 <span>留白表示不限制</span></h3>
+        <div class="field-grid">
+          <label>預算上限 <span>NT$</span><input id="budget" type="number" min="0" max="1000000" step="1" placeholder="不限制"></label>
+          <label>重量上限 <span>g</span><input id="weight" type="number" min="1" max="50000" step="1" placeholder="不限制"></label>
+          <label>筆電尺寸 <span>吋</span><input id="laptop" type="number" min="1" max="30" step="0.1" placeholder="不限制"></label>
+          <label>最小容量 <span>L</span><input id="capacity" type="number" min="1" max="200" step="0.1" placeholder="不限制"></label>
+        </div>
+        <label class="field-label" for="dimensions">期望外部尺寸上限（cm，可旋轉對齊三邊）</label>
+        <input id="dimensions" placeholder="例如 30x30x40" maxlength="80">
+        <label class="field-label" for="decision-mode">如何看待不完美的選項</label>
+        <select id="decision-mode"><option value="tradeoff">綜合取捨，找出相對最合適</option><option value="strict">所有數值條件都不可妥協</option></select>
+        <details class="hard-options"><summary>指定不可妥協的條件</summary><div class="hard-grid"><label><input type="checkbox" data-hard="price_ntd">預算</label><label><input type="checkbox" data-hard="weight_g">重量</label><label><input type="checkbox" data-hard="laptop_inches">筆電</label><label><input type="checkbox" data-hard="capacity_l">容量</label><label><input type="checkbox" data-hard="dimensions_cm">尺寸</label></div></details>
+        <label class="toggle-field"><input id="wants-bottle" type="checkbox">希望有水壺袋</label>
+        <label class="toggle-field"><input id="accept-reviews" type="checkbox">接受心得中的使用條件與不確定性</label>
+        <p class="micro">勾選後才會採用壓縮心得作為取捨依據；標示尺寸不會被改寫。此版使用離線資料，不代表航空公司保證接受。30×30×40 僅為本情境假設。</p>
+        <label class="field-label" for="priority">符合條件後，你更在意</label>
+        <select id="priority"><option value="balanced">價格、重量與背負設計均衡</option><option value="comfort">背負設計優先</option><option value="lightweight">輕量優先</option><option value="value">價格優先</option></select>
+        <p class="micro">綜合比較好處、條件差距與資料不確定性；不可妥協的條件仍會排除商品。其他文字描述保留為使用情境。</p>
+        <button id="compare" class="button primary full" disabled>用我的需求比較 <span>→</span></button>
+        <p id="compare-note" class="micro center">選擇 1–6 件商品開始比較</p>
+        <details class="persona-details"><summary>查看確認後的需求資料（Persona）</summary><pre id="persona">比較後顯示本次需求檔案。</pre></details>
+      </aside>
+
+      <section class="products-panel" aria-labelledby="products-title">
+        <div class="section-toolbar"><div><div class="section-label"><span class="step-number">01</span><span>YOUR SHORTLIST</span></div><h2 id="products-title">先把喜歡的放在一起 <span id="count" class="count">0 件</span></h2></div><button id="open-import" class="button secondary">＋ 匯入商品</button></div>
+        <div class="catalog-note"><span>旅行・通勤背包</span><p>內建商品為虛構示範資料；也可以貼上規格或上傳文字／JSON 檔。</p></div>
+        <div id="products" class="product-grid" aria-live="polite"></div>
+
+        <section id="empty-result" class="empty-result"><span class="spark">✳</span><div><h3>好的推薦，從你的需求開始。</h3><p>確認需求條件後，查看符合原因、待確認資訊與選擇的取捨。</p></div></section>
+        <section id="results" class="results" aria-labelledby="results-title" hidden>
+          <div class="section-label"><span class="step-number">03</span><span>MADE FOR YOUR NEEDS</span></div>
+          <div class="results-heading"><h2 id="results-title">有理由的選擇</h2><span id="result-count" class="muted"></span></div>
+          <div id="winner"></div>
+          <div id="matrix" class="matrix-wrap"></div>
+          <div id="alternatives" class="alternatives"></div>
+          <p class="result-footnote">規格與心得來源：內建虛構示範或使用者提供的離線資料。未使用 LLM、未連網查證；壓縮心得僅在你接受附帶條件時影響取捨，不保證實際適用。</p>
+        </section>
+      </section>
+    </div>
+    <footer><b>gather.</b><span>少一點猶豫，多一點理解。</span><small>LOCAL DEMO · 無 AWS／無模型下載 · 虛構商品清楚標示</small></footer>
+  </main>
+
+  <dialog id="import-dialog" aria-labelledby="import-title">
+    <form id="import-form">
+      <div class="dialog-heading"><div><p class="eyebrow">BRING YOUR OWN PRODUCT</p><h2 id="import-title">放入另一個選擇</h2></div><button id="close-import" type="button" class="icon-button" aria-label="關閉匯入視窗">×</button></div>
+      <p class="muted">貼上商品文字，或匯入 .txt、.md、.html、.json。所有處理都在本機完成。</p>
+      <div class="import-tools"><label class="button secondary file-button">↑ 選擇檔案<input id="file" type="file" accept=".txt,.md,.html,.json" hidden></label><button id="fill-sample" class="text-button" type="button">填入示範規格</button><a href="/assets/sample-product.json" download class="text-button">下載 JSON 範例</a></div>
+      <div class="field-grid"><label>商品名稱<input id="product-name" required maxlength="100" placeholder="例如：City 26 通勤背包"></label><label>品牌<input id="product-brand" maxlength="80" placeholder="自訂商品"></label></div>
+      <label class="field-label" for="description">商品規格與說明</label><textarea id="description" rows="8" minlength="10" maxlength="20000" required placeholder="售價：NT$2,800&#10;重量：680 g&#10;容量：26 L&#10;筆電隔層：16 吋&#10;加厚背板：有&#10;腰帶：無"></textarea>
+      <p class="micro">示範解析器支援以上欄位格式。沒有明確寫出的數值會標示「未提供」，不會自行補齊。網址擷取與圖片辨識尚未接入此版。</p>
+      <details class="hard-options"><summary>加入離線壓縮心得（選填 JSON）</summary><label class="field-label" for="compression-json">來源、原文、適用條件與壓縮尺寸</label><textarea id="compression-json" rows="5" placeholder='[{"source_label":"來源名稱","quote":"心得原文","conditions":"適用條件","compressed_dimensions_cm":[30,20,40],"stance":"supporting"}]'></textarea><p class="micro">僅保存你提供的資料，不會自動連網。反例可用 stance: conflicting；有衝突時不採用壓縮尺寸。</p></details>
+      <p id="import-error" class="inline-error" role="alert" hidden></p>
+      <button id="import-submit" class="button primary full" type="submit">解析規格並加入比較 <span>→</span></button>
+    </form>
+  </dialog>
+</body>
+</html>
