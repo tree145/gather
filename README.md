@@ -1,40 +1,40 @@
 # Gather
 
-**找到適合自己的商品，也看懂選擇背後的取捨。**
+**Find products that fit your needs, and understand the tradeoffs behind your choice.**
 
-Gather 是面向消費者的互動選購工具。放入正在考慮的商品、描述自己的需求，再比較價格、規格、使用心得與不確定性，找到相對最合適的選擇。
+Gather is an interactive shopping tool for consumers. Add products you are considering, describe your needs, and compare prices, specifications, user experiences, and uncertainties to find the best fit among your options.
 
-現實中的商品很少完全符合所有期望。Gather 將「希望有」與「不可妥協」分開，讓值得考慮的選項不會只因一項規格差距就被忽略。
+Few products meet every expectation. Gather separates preferences from non-negotiable requirements, so a worthwhile option is not overlooked simply because one specification falls short.
 
-## 可以做什麼
+## What you can do
 
-- **比較候選商品**：選擇內建範例，或貼上商品規格、匯入文字與 JSON 檔案，一次比較 1–6 件。
-- **描述個人需求**：輸入使用情境，確認預算、重量、筆電尺寸、容量及外部尺寸等條件。
-- **選擇取捨方式**：以價格、輕量或背負設計為優先，也能指定不可妥協的條件。
-- **查看推薦依據**：同時呈現好處、規格差距、來源原文、未知資訊與成立條件。
-- **運用心得線索**：在明確接受其使用條件後，讓壓縮尺寸等結構化心得影響比較；有反例衝突時不採用該線索。
-- **保留自己的商品清單**：資料儲存在本機，重新開啟後仍可使用，也能刪除自行匯入的商品。
+- **Compare candidate products:** Choose built-in examples, paste specifications, or import text and JSON files. Compare 1–6 products at a time.
+- **Describe your needs:** Explain how you plan to use a product, then confirm your budget, weight target, laptop size, capacity, and external dimensions.
+- **Choose your tradeoffs:** Prioritize price, low weight, or carrying features, and mark specific requirements as non-negotiable.
+- **See the reasoning:** Review benefits, specification gaps, source excerpts, missing information, and the conditions behind each suggestion.
+- **Consider review evidence:** Explicitly accept the relevant usage conditions before structured evidence, such as compressed dimensions, influences the comparison. Conflicting evidence prevents that compression claim from being used.
+- **Keep your own shortlist:** Products are stored locally and remain available after restarting. You can also delete products you imported.
 
-## 一個有取捨的選擇
+## A choice with tradeoffs
 
-假設這次希望隨身包尺寸不超過 **30 × 30 × 40 cm**：
+Suppose you want a carry-on bag no larger than **30 × 30 × 40 cm**:
 
-| | A 包包 | B 包包 |
+| | Bag A | Bag B |
 | --- | --- | --- |
-| 標示尺寸 | 30 × 30 × 30 cm | 30 × 20 × 45 cm |
-| 售價 | NT$2,800 | NT$1,400 |
-| 水壺袋 | 無 | 有 |
-| 使用線索 | 標示尺寸符合期望 | 心得描述：七分滿、頂部無硬物時，可壓至 30 × 20 × 40 cm |
+| Listed dimensions | 30 × 30 × 30 cm | 30 × 20 × 45 cm |
+| Price | NT$2,800 | NT$1,400 |
+| Bottle pocket | No | Yes |
+| Usage evidence | Listed dimensions meet the target | A review describes compressing the bag to 30 × 20 × 40 cm when approximately 70% full, with no rigid items at the top |
 
-如果願意接受裝載限制與不確定性，B 可以成為相對首選：省下 NT$1,400，又有水壺袋。Gather 仍會顯示它的原始尺寸超出 5 cm，附上心得原文與條件，標記為「附條件可考慮」。
+If you accept those packing restrictions and the remaining uncertainty, Bag B can become the preferred option: it saves NT$1,400 and includes a bottle pocket. Gather still shows that its listed dimensions exceed the limit by 5 cm, presents the review excerpt and its conditions, and labels the recommendation as conditional.
 
-若將尺寸設為不可妥協，首選便回到 A。個人心得不會覆寫原始商品規格，也不代表航空公司保證接受。
+If dimensions are non-negotiable, Bag A becomes the preferred option instead. A personal account never replaces the original specifications or guarantees acceptance by an airline.
 
-上面的尺寸限制、商品與心得均為**虛構情境範例**，不是已查證的航空公司規定或真實產品評價。
+The size limit, products, and reviews above are **fictional examples**, not verified airline rules or actual product reviews.
 
-## 在自己的電腦使用
+## Run locally
 
-需要 Python 3.10 以上；已在 Windows、Python 3.14 驗證。
+Requires Python 3.10 or later.
 
 ```sh
 git clone https://github.com/tree145/gather.git
@@ -42,7 +42,7 @@ cd gather
 python -m venv .venv
 ```
 
-啟用虛擬環境：
+Activate the virtual environment:
 
 ```powershell
 # Windows PowerShell
@@ -54,97 +54,95 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-安裝並啟動：
+Install dependencies and start the application:
 
 ```sh
 python -m pip install -r requirements.txt
 python -m gather
 ```
 
-開啟 **http://127.0.0.1:8010**。保留終端機執行，按 `Ctrl+C` 停止。
+Open `http://127.0.0.1:8010`. Keep the terminal running and press `Ctrl+C` to stop.
 
-如果預設連接埠已被占用：
+If the default port is already in use:
 
 ```sh
 python -m uvicorn gather.app:app --host 127.0.0.1 --port 8012
 ```
 
-此時改開 http://127.0.0.1:8012。亦可透過 `GATHER_PORT` 環境變數調整 `python -m gather` 使用的連接埠。
+Then open http://127.0.0.1:8012. You can also set the `GATHER_PORT` environment variable to change the port used by `python -m gather`.
 
-## 第一次操作
+## Your first comparison
 
-1. 選擇一個使用情境，勾選要比較的商品。
-2. 描述需求，按「整理我的需求」，確認或修改整理出的條件。
-3. 選擇排序偏好；只有真正不可妥協的條件才需要特別勾選。
-4. 按「依我的需求比較」，查看相對首選、取捨與各商品差異。
+The current interface, presets, and natural-language requirement parser primarily support Traditional Chinese. The control names below are English translations for reference.
 
-想體驗 A／B 的例子，可以按「隨身包取捨 A / B」，先比較一次，再勾選「接受心得中的使用條件與不確定性」重新比較，觀察結果如何改變。
+1. Choose a usage scenario and select the products you want to compare.
+2. Describe your needs, select **Organize my needs**, and confirm or edit the extracted conditions.
+3. Choose a ranking preference. Mark only truly essential conditions as non-negotiable.
+4. Select **Compare based on my needs** to review the preferred option, its tradeoffs, and differences between products.
 
-## 匯入自己的商品
+To try the example above, choose the **Carry-on tradeoffs A / B** scenario and compare once. Then enable **Accept the review's usage conditions and uncertainty** and compare again to see how the result changes.
 
-按「匯入商品」，貼上規格或選擇 UTF-8 編碼的 `.txt`、`.md`、`.html`、`.json` 檔案。檔案上限 64 KB，商品描述上限 20,000 字元。
+## Import your own products
 
-建議使用以下欄位格式：
+Select **Import product** to paste specifications or choose a UTF-8 `.txt`, `.md`, `.html`, or `.json` file. Files may be up to 64 KB, and product descriptions may contain up to 20,000 characters.
+
+For numeric specifications, the following English text format is supported:
 
 ```text
-售價：NT$2,800
-重量：680 g
-容量：26 L
-筆電隔層：16 吋
-加厚背板：有
-腰帶：無
-尺寸：30x20x45 cm
-水壺袋：有
+Price: NT$2,800
+Weight: 680 g
+Capacity: 26 L
+Laptop: 16 inches
+Dimensions: 30x20x45 cm
 ```
 
-沒有提供或未辨識出的規格會保留為未知。重量可使用 g 或 kg；價格以新台幣為準，不換算外幣。尺寸以 cm 表示，允許旋轉對齊三邊比較。
+Specifications that are missing or cannot be recognized remain unknown. Weight can be expressed in g or kg. Prices are interpreted in New Taiwan dollars, without currency conversion. Dimensions are expressed in cm; the comparison allows rotation to align the three sides.
 
-JSON 使用 `name`、`brand`、`description` 欄位，介面可下載[可匯入範例](gather/static/sample-product.json)。
+JSON products use the `name`, `brand`, and `description` fields. An [importable example](gather/static/sample-product.json) is also available to download from the interface. Use that template for additional fields such as padded backs, hip belts, and bottle pockets, whose parser currently expects Traditional Chinese field labels.
 
-若已有壓縮心得，可在匯入視窗的選填區域加入結構化資料，或在商品 JSON 加入 `compression_evidence` 陣列：
+If you already have evidence about compression, add structured entries in the optional section of the import dialog, or include a `compression_evidence` array in the product JSON:
 
 ```json
 [
   {
-    "source_label": "你提供的來源名稱或網址",
-    "quote": "心得原文：七分滿、頂部放柔軟衣物時，可壓至 30x20x40 cm。",
-    "conditions": "七分滿，頂部無硬物；須確認實際裝載後尺寸。",
+    "source_label": "The source name or URL you provide",
+    "quote": "Review excerpt: At about 70% full, with soft clothing at the top, the bag compresses to 30x20x40 cm.",
+    "conditions": "Approximately 70% full, with no rigid items at the top; verify the dimensions after packing.",
     "compressed_dimensions_cm": [30, 20, 40],
     "stance": "supporting"
   }
 ]
 ```
 
-這是資料格式範例，不是真實評價。`stance` 可使用 `supporting`（支持線索）或 `conflicting`（反例／衝突），每件商品最多 5 筆。來源名稱或網址只作為文字保存，不會自動開啟或擷取內容。
+This illustrates the data format, not a real review. Set `stance` to `supporting` or `conflicting`, with up to five entries per product. Source names and URLs are stored as text; the application does not open them or fetch their contents.
 
-## 目前版本與費用
+## Current version and costs
 
-目前是**本機執行的離線互動原型**，需求整理、規格抽取與回饋使用可重現的規則及文字模板，並未使用語言模型。
+This is a **local, offline interactive prototype**. Requirement parsing, specification extraction, and feedback use deterministic rules and text templates rather than a language model.
 
-- 不需要 AWS 帳號、API 金鑰、GPU 或模型下載。
-- 本程式沒有串接付費 API、雲端部署或遙測，不會產生 AWS／模型 API 用量費用。
-- 首次安裝 Python 套件需要網路；安裝完成後，日常操作可離線進行。
-- 內建商品及心得均清楚標示為虛構範例；自行匯入的資料也不會被自動補上虛構評論。
+- The application has no paid API integrations, cloud deployment, or telemetry, so running it does not incur usage charges.
+- Installing Python dependencies initially requires internet access. Once installed, normal operation works offline.
+- Built-in products and reviews are clearly labeled as fictional examples. Imported products are not automatically given fabricated reviews.
 
-目前以背包選購為主要情境，尚未提供自動搜尋網路、驗證真實評論、圖片／PDF 辨識，或任意商品類別的語意理解。額外的文字需求會保留在使用情境中，但只有介面支援並確認的條件會執行比較。
+The current version focuses on backpack shopping. It does not yet search the web, verify real reviews, recognize images or PDFs, or interpret arbitrary product categories. Additional written preferences remain part of the usage context, but only supported and confirmed conditions affect the comparison.
 
-排序權重、差距扣分與心得處理是原型規則，尚未校準為真實消費者效用；推薦不是客觀最佳解、可信度百分比或實際適用保證。自行提供的心得原文與結構化數值是否一致，仍需人工確認。
+Ranking weights, gap penalties, and evidence handling are prototype rules that have not been calibrated against real consumer preferences. Recommendations are not objective optima, confidence percentages, or guarantees of suitability.
 
-## 本機資料
+## Local data
 
-商品預設存放於 `data/gather.db`，可用 `GATHER_DB` 環境變數指定位置。需求與推薦結果不會另存為歷史紀錄。資料庫、本機設定、錄影與機密檔案均排除於版本控制之外。
+Products are stored in `data/gather.db` by default. Set the `GATHER_DB` environment variable to use a different location. Requirements and recommendation results are not saved as a separate history. Databases, local settings, recordings, and secret files are excluded from version control.
 
-服務預設只監聽 `127.0.0.1`，供本機使用。此版本沒有多人帳號或公開服務所需的存取控制。
+The application listens on `127.0.0.1` by default for local use. This version does not include multi-user accounts or access controls for a public service.
 
-## 驗證
+## Verification
 
-執行功能測試：
+Run the functional tests:
 
 ```sh
 python -m unittest discover -s tests -p test_gather.py -v
 ```
 
-選用的瀏覽器檢查會操作介面並產生截圖及無聲錄影；它使用獨立測試資料庫，不更動自己的商品清單：
+The optional browser check exercises the interface and generates screenshots and a silent walkthrough recording. It uses a separate test database and does not modify your product list:
 
 ```sh
 python -m pip install playwright
@@ -152,10 +150,10 @@ python -m playwright install chromium
 python scripts/check_gather.py
 ```
 
-輸出位於 `data/demo-artifacts/`，不包含在 repo 內。
+Generated files are saved to `data/demo-artifacts/` and are not included in the repository.
 
-## 專案起源
+## Project origins
 
-Gather 延伸自 [misanthropics-ai/0815](https://github.com/misanthropics-ai/0815)。前身探索商品規格、使用者輪廓與推薦分析，Gather 將使用流程轉為消費者主動描述需求、比較候選商品，並理解實際選擇中的取捨。
+Gather grew out of [misanthropics-ai/0815](https://github.com/misanthropics-ai/0815), which explored product specifications, user profiles, and recommendation analysis. Gather shifts the experience toward consumers describing their own needs, comparing candidate products, and understanding the tradeoffs involved in choosing between them.
 
-本專案沿用並調整了前身的需求資料結構與 HTML 文字清理邏輯，以獨立的本機應用提供消費者介面。
+This project adapts the predecessor's requirement data structures and HTML text-cleaning logic into an independent local application with a consumer-facing interface.
